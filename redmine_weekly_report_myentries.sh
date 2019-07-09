@@ -1,3 +1,6 @@
+#!/bin/bash
+#Weekly personal report - all projects, each user receives time entries submitted in the current week by them.
+
 #Loading variables from the variables.sh file
 source variables.sh
 source smtp_config.sh
