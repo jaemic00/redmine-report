@@ -1,7 +1,14 @@
 #Loading variables from the variables.sh file
 source variables.sh
-#Getting the administrator e-mails from the database
-ADMINEMAILS=$(psql -c "Copy (SELECT string_agg(address, ',') FROM email_addresses INNER JOIN users ON users.id = email_addresses.user_id WHERE admin=true) To STDOUT;")
+source smtp_config.sh
+#if a parameter has been passed...
+if [ "$1" != "" ]; then
+    #check if that parameter is admin, if yes...
+    if [ "$1" == "admin" ]; then
+      #get admin e-mails from the database. 
+      ADMINEMAILS=$(psql -c "Copy (SELECT string_agg(address, ',') FROM email_addresses INNER JOIN users ON users.id = email_addresses.user_id WHERE admin=true) To STDOUT;")
+    fi
+fi
 #If temp exists, delete it.
 if [ -d "./temp" ]; then
   rm -r temp
