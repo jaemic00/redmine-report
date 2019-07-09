@@ -25,7 +25,7 @@ echo "<h1>$SUBJECT</h1>" >> ./temp/messageBody.html
 echo "<h2>$INFO</h2>" >> ./temp/messageBody.html
 #Appending the HTML table generated from the query
 ./csv2html.sh ./temp/queryData.csv >> ./temp/messageBody.html
-#Finishing the html tag
+#Closing the html tag
 echo "</html>" >> ./temp/messageBody.html
 #Sending the email
 ./sendEmail -f "witkowski.you2.pl@you2.pl" -t $ADMINEMAILS -u "$SUBJECT" -s "$SMTP_SERVER" -xu "$SMTP_USER" -xp "$SMTP_PASSWORD" -o message-content-type=html -o message-file="./temp/messageBody.html" -o message-charset=utf-8
