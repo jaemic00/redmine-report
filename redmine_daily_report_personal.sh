@@ -10,7 +10,7 @@ now=$(date +"%d_%m_%Y")
 SUBJECT="Redmine Personal Daily Report: $now"
 INFO="This report contains all the time entries you submitted on $now"
 #Get user e-mails from the database
-USEREMAILS=$(psql -c "Copy (SELECT string_agg(address, ',') FROM email_addresses) To STDOUT;")
+USEREMAILS=$(psql -c "Copy (SELECT string_agg(email_addresses.address, ',') FROM email_addresses) To STDOUT;")
 #Generate an array of e-mails.
 IFS=', ' read -r -a mails <<< "$USEREMAILS"
 #Send a custom report to each user of his time entries.
