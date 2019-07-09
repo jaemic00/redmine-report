@@ -6,7 +6,10 @@ if [ "$1" != "" ]; then
     #check if that parameter is admin, if yes...
     if [ "$1" == "admin" ]; then
       #get admin e-mails from the database. 
-      ADMINEMAILS=$(psql -c "Copy (SELECT string_agg(address, ',') FROM email_addresses INNER JOIN users ON users.id = email_addresses.user_id WHERE admin=true) To STDOUT;")
+      RECIPIENTS=$(psql -c "Copy (SELECT string_agg(address, ',') FROM email_addresses INNER JOIN users ON users.id = email_addresses.user_id WHERE admin=true) To STDOUT;")
+    #if not, chceck if that parameter is user, if yes...
+    elif [ "$1" == "user" ]; then
+      RECIPIENTS=$mail
     fi
 fi
 #If temp exists, delete it.
@@ -28,6 +31,6 @@ echo "<h2>$INFO</h2>" >> ./temp/messageBody.html
 #Closing the html tag
 echo "</html>" >> ./temp/messageBody.html
 #Sending the email
-./sendEmail -f "witkowski.you2.pl@you2.pl" -t $ADMINEMAILS -u "$SUBJECT" -s "$SMTP_SERVER" -xu "$SMTP_USER" -xp "$SMTP_PASSWORD" -o message-content-type=html -o message-file="./temp/messageBody.html" -o message-charset=utf-8
+./sendEmail -f "witkowski.you2.pl@you2.pl" -t $RECIPIENTS -u "$SUBJECT" -s "$SMTP_SERVER" -xu "$SMTP_USER" -xp "$SMTP_PASSWORD" -o message-content-type=html -o message-file="./temp/messageBody.html" -o message-charset=utf-8
 #Removing the temp directory
 rm -r temp
