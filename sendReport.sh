@@ -7,8 +7,11 @@ if [ "$1" != "" ]; then
     if [ "$1" == "admin" ]; then
       #get admin e-mails from the database. 
       RECIPIENTS=$(psql -c "Copy (SELECT string_agg(address, ',') FROM email_addresses INNER JOIN users ON users.id = email_addresses.user_id WHERE admin=true) To STDOUT;")
+      echo "Sending an admin report to $RECIPIENTS"
     #if not, chceck if that parameter is user, if yes...
     elif [ "$1" == "user" ]; then
+      echo "Sending a personal report to $mail ..."
+      #set the recipient to the mail to which the current report is being sent to.
       RECIPIENTS=$mail
     fi
 fi
