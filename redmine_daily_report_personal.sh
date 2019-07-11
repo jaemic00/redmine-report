@@ -17,6 +17,6 @@ IFS=', ' read -r -a mails <<< "$USEREMAILS"
 for mail in "${mails[@]}"
 do
     #This is the psql command that includes the sql query.
-    PSQL_COMMAND_STRING="Copy (SELECT projects.name AS \"NazwaProjektu\", issues.subject AS \"Zagadnienie\", time_entries.spent_on AS \"Data\", time_entries.hours AS \"Liczba godzin\", time_entries.comments AS \"Komentarz\" from time_entries inner join issues ON issues.id = time_entries.issue_id inner join projects ON projects.id = time_entries.project_id inner join users ON time_entries.user_id = users.id inner join email_addresses ON email_addresses.user_id = users.id WHERE address='$mail' AND time_entries.spent_on = CAST(CURRENT_TIMESTAMP AS DATE) order by projects.id, users.id, time_entries.spent_on asc) To STDOUT With CSV HEADER DELIMITER ',';"
+    PSQL_COMMAND_STRING="Copy (SELECT projects.name AS \"Project\", issues.subject AS \"Issue\", time_entries.spent_on AS \"Date\", time_entries.hours AS \"Hours\", time_entries.comments AS \"Comment\" from time_entries inner join issues ON issues.id = time_entries.issue_id inner join projects ON projects.id = time_entries.project_id inner join users ON time_entries.user_id = users.id inner join email_addresses ON email_addresses.user_id = users.id WHERE address='$mail' AND time_entries.spent_on = CAST(CURRENT_TIMESTAMP AS DATE) order by projects.id, users.id, time_entries.spent_on asc) To STDOUT With CSV HEADER DELIMITER ',';"
     source sendReport.sh user
 done

@@ -34,6 +34,6 @@ echo "<h2>$INFO</h2>" >> ./temp/messageBody.html
 #Closing the html tag
 echo "</html>" >> ./temp/messageBody.html
 #Sending the email
-./sendEmail -f "$SMTP_EMAIL" -t $RECIPIENTS -u "$SUBJECT" -s "$SMTP_SERVER" -xu "$SMTP_USER" -xp "$SMTP_PASSWORD" -o message-content-type=html -o message-file="./temp/messageBody.html" -o message-charset=utf-8
+./sendEmail -f "$SMTP_EMAIL" -t $RECIPIENTS -u "$SUBJECT" -s "$SMTP_SERVER" -xu "$SMTP_USER" -xp "$SMTP_PASSWORD" -o message-content-type=html -o message-file="./temp/messageBody.html" -o message-charset=utf-8 -o tls=no
 #Removing the temp directory
 rm -r temp
