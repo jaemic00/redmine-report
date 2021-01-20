@@ -12,7 +12,12 @@ Unfortunately, I don't have a setup script ready, maybe it will be implemented i
 
 The script was used in the past for inside usage in a company, so it's not well documented or entirely finished. 
 
-It's up to you to figure out how it works.
+It's up to you to figure out how it works. All scripts have useful comments.
+
+
+## Example E-mail report: 
+(it's in polish, sorry)
+![](example.png)
 
 
 **Use at your own risk.**
