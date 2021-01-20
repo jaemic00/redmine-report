@@ -13,4 +13,4 @@ Unfortunately, I don't have a setup script ready, maybe it will be improved in t
 The script was used in the past for inside usage in a company, so it's not well documented or entirely finished. 
 
 
-**Use at your own risk.
+**Use at your own risk.**
