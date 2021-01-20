@@ -3,7 +3,7 @@
 ## Redmine daily, weekly and monthly e-mail reports
 
 This program sends daily, weekly and monthly e-mail reports from Redmine.
-It formats them nicely into html and sends a pretty HTML e-mail with a table.
+It formats them nicely into HTML and sends a pretty HTML e-mail with a table.
 
 It pulls data directly from the Redmine database using SQL.
 
